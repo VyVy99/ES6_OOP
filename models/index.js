@@ -1,3 +1,9 @@
+
+export const TypePerson = {
+    STUDENT:"STUDENT",
+    EMPLOYEE: "EMPLOYEE",
+    CUSTOMER: "CUSTOMER"
+}
 export class Person {
     constructor(hoTen, diaChi, ma, email) {
         this.hoTen = hoTen;
@@ -12,6 +18,8 @@ export class Student extends Person {
         this.toan = toan;
         this.ly = ly;
         this.hoa = hoa;
+        this.type = TypePerson.STUDENT
+
     }
     tinhDiemTrungBinh() {
         return (this.toan + this.ly + this.hoa) / 3
@@ -22,6 +30,7 @@ export class Employee extends Person {
         super(hoTen, diaChi, ma, email)
         this.soNgayLamViec = soNgayLamViec;
         this.luongTheoNgay = luongTheoNgay;
+        this.type = TypePerson.EMPLOYEE
 
     }
     tinhLuong() {
@@ -34,6 +43,8 @@ export class Customer extends Person {
         this.tenCongTy = tenCongTy;
         this.triGiaHoaDon = triGiaHoaDon;
         this.danhGia = danhGia;
+        this.type = TypePerson.CUSTOMER
+
     }
 
 }
@@ -44,17 +55,16 @@ export class ListPerson {
     }
 
     // Thêm người dùng vào danh sách
-    addPerson(person) {
+    add(person) {
         this.persons.push(person);
     }
-
     // Xóa người dùng khỏi danh sách theo mã
-    removePersonById(id) {
+    removeById(id) {
         this.persons = this.persons.filter(person => person.ma !== id);
     }
 
     // Cập nhật thông tin người dùng
-    updatePerson(id, updatedPerson) {
+    update(id, updatedPerson) {
         // dua theo ma de cpa nhat ng dung
         const index = this.persons.findIndex(person => person.ma === id);
         if (index !== -1) {
